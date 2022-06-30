@@ -1,4 +1,4 @@
-# OpenAI API -- ELI5 programming concepts
+# OpenAI API -- ELI5 programming concepts (stackopenflow)
 
 A super simple query machine for answering programming concepts in "ELI5" fashion, kind of.  
-Dummy site live on [openai-eli5.netlify.app](http://openai-eli5.netlify.app).
+Dummy site live on [stackopenflow.netlify.app](http://stackopenflow.netlify.app).
