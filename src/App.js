@@ -2,9 +2,11 @@ import './App.css';
 import React, { useState, useEffect } from "react"
 import Loading from './components/Loading';
 import { motion } from 'framer-motion';
-const OpenAI = require('openai-api');
-const OPENAI_API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
-const openai = new OpenAI(OPENAI_API_KEY);
+
+const { Configuration, OpenAIApi } = require("openai");
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY});
+const openai = new OpenAIApi(configuration);
 
 function App() {
 
@@ -32,17 +34,15 @@ function App() {
           Topic: ${query}
           Answer:
           `
-
-        const gptResponse = await openai.complete({
-          engine: 'text-davinci-002',
+        const gptResponse = await openai.createCompletion({
+          model: "text-davinci-002",
           prompt: promptText,
-          maxTokens: 128,
-          temperature: 0.1,
           max_tokens: 128,
-          top_p: 1,
-          frequency_penalty: 0,
-          presence_penalty: 0.5,
+          temperature: 0,
         });
+
+        console.log("hello")
+        console.log(gptResponse)
 
         setResponse(gptResponse.data.choices[0].text)
         // setResponse("OpenAI's API provides access to GPT-3, which performs a wide variety of natural language tasks, and Codex, which translates natural language to code.")
